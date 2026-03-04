@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: oliver
+    database: bowenhickman
+    schema: oliver_dw_source
+    tables:
+      - name: customer
+      - name: employee
+      - name: orders
+      - name: orderline
+      - name: product
+      - name: store
