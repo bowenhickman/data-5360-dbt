@@ -15,3 +15,7 @@ models:
     description: "Oliver Sales Fact"
   - name: sales
     description: "Oliver Sales Semantic Layer"
+  - name: stg_employee_certifications
+    description: "Staging model for employee certification data loaded from S3. Parses certification_json into certification_name, certification_cost, and certification_awarded_date."
+  - name: fact_certification
+    description: "Oliver Certification Fact. Grain: one row per certification awarded to one employee on one date."
