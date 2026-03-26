@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: eco_landing1
+    database: BOWENHICKMAN
+    schema: ECO_SOURCE_TRANSACTIONAL_ECOESSENTIALS_TRANSACTIONAL_DB
+    tables:
+      - name: CUSTOMER
+      - name: PRODUCT
+      - name: PROMOTIONAL_CAMPAIGN
+      - name: ORDER
+        identifier: '"ORDER"'
+      - name: ORDER_LINE
+
+  - name: eco_landing2
+    database: BOWENHICKMAN
+    schema: ECOESSENTIALS_MARKETING
+    tables:
+      - name: MARKETINGEMAILS
