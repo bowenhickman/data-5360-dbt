@@ -3,19 +3,162 @@ version: 2
 models:
   - name: oliver_dim_customer
     description: "Oliver Customer Dimension"
+    columns:
+      - name: CUST_KEY
+        description: "Primary key for customer dimension"
+        tests:
+          - unique
+          - not_null
+
   - name: oliver_dim_employee
     description: "Oliver Employee Dimension"
+    columns:
+      - name: EMPLOYEE_KEY
+        description: "Primary key for employee dimension"
+        tests:
+          - unique
+          - not_null
+
   - name: oliver_dim_product
     description: "Oliver Product Dimension"
+    columns:
+      - name: PRODUCT_KEY
+        description: "Primary key for product dimension"
+        tests:
+          - unique
+          - not_null
+
   - name: oliver_dim_store
     description: "Oliver Store Dimension"
+    columns:
+      - name: STORE_KEY
+        description: "Primary key for store dimension"
+        tests:
+          - unique
+          - not_null
+
   - name: oliver_dim_date
     description: "Oliver Date Dimension"
+    columns:
+      - name: DATE_KEY
+        description: "Primary key for date dimension"
+        tests:
+          - unique
+          - not_null
+
   - name: fact_sales
     description: "Oliver Sales Fact"
+    columns:
+      - name: CUST_KEY
+        description: "Foreign key to customer dimension"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('oliver_dim_customer')
+              field: CUST_KEY
+
+      - name: PRODUCT_KEY
+        description: "Foreign key to product dimension"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('oliver_dim_product')
+              field: PRODUCT_KEY
+
+      - name: STORE_KEY
+        description: "Foreign key to store dimension"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('oliver_dim_store')
+              field: STORE_KEY
+
+      - name: DATE_KEY
+        description: "Foreign key to date dimension"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('oliver_dim_date')
+              field: DATE_KEY
+
+      - name: EMPLOYEE_KEY
+        description: "Foreign key to employee dimension"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('oliver_dim_employee')
+              field: EMPLOYEE_KEY
+
   - name: sales
     description: "Oliver Sales Semantic Layer"
+
   - name: stg_employee_certifications
     description: "Staging model for employee certification data loaded from S3. Parses certification_json into certification_name, certification_cost, and certification_awarded_date."
+    columns:
+      - name: EMPLOYEE_ID
+        description: "Employee identifier"
+        tests:
+          - not_null
+
+      - name: CERTIFICATION_NAME
+        description: "Certification name parsed from JSON"
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - 'Cash Handling and Security'
+                - 'Conflict Resolution'
+                - 'Customer Service Excellence'
+                - 'Inventory Management'
+                - 'Leadership and Coaching'
+                - 'Point of Sale Operations'
+                - 'Product Knowledge Level 2'
+                - 'Strategic Retail Operations'
+                - 'Workplace Safety'
+
+      - name: CERTIFICATION_COST
+        description: "Certification cost parsed from JSON"
+        tests:
+          - not_null
+
+      - name: CERTIFICATION_AWARDED_DATE
+        description: "Date certification was awarded"
+        tests:
+          - not_null
+
   - name: fact_certification
     description: "Oliver Certification Fact. Grain: one row per certification awarded to one employee on one date."
+    columns:
+      - name: EMPLOYEE_KEY
+        description: "Foreign key to employee dimension"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('oliver_dim_employee')
+              field: EMPLOYEE_KEY
+
+      - name: CERTIFICATION_NAME
+        description: "Name of certification"
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - 'Cash Handling and Security'
+                - 'Conflict Resolution'
+                - 'Customer Service Excellence'
+                - 'Inventory Management'
+                - 'Leadership and Coaching'
+                - 'Point of Sale Operations'
+                - 'Product Knowledge Level 2'
+                - 'Strategic Retail Operations'
+                - 'Workplace Safety'
+
+      - name: CERTIFICATION_COST
+        description: "Certification cost"
+        tests:
+          - not_null
+
+      - name: DATE_KEY
+        description: "Foreign key to date dimension"
+        tests:
+          - not_null
