@@ -83,6 +83,8 @@ models:
               to: ref('eco_dim_eventtype')
               field: eventtype_key
 
+  
+  
   - name: eco_fact_sale
     description: Fact table for sales order lines.
     columns:
@@ -114,3 +116,4 @@ models:
           - relationships:
               to: ref('eco_dim_time')
               field: time_key
+ 
