@@ -192,6 +192,7 @@ Using dbt Cloud, we transformed raw landing tables into production-ready dimensi
     'customer_id',
     'subscriber_id'
 ]) }}
+```
 
 This ensured consistent joins between dimensions and facts while preserving warehouse integrity.
 
