@@ -250,13 +250,14 @@ A live Tableau dashboard was connected directly to Snowflake for executive repor
 
 This visual compared marketing email activity against generated revenue over time to identify campaign performance patterns.
 
-![Revenue Compared to Emails Sent](snapshots/Screenshot 2026-04-23 154048.png)
+<img width="1240" height="622" alt="Screenshot 2026-04-23 154048" src="https://github.com/user-attachments/assets/0755b249-8397-4c17-9d16-379fe1a1ab18" />
 
 ### Top Campaigns by Revenue
 
 This visualization identified which promotional campaigns generated the highest revenue contribution.
 
-![Top Campaigns by Revenue](snapshots/Screenshot 2026-04-23 154108.png)
+<img width="502" height="429" alt="Screenshot 2026-04-23 154108" src="https://github.com/user-attachments/assets/74f1c645-3cea-46d6-a7d3-bbee202fb00d" />
+
 
 Highlighted campaigns included:
 
