@@ -270,6 +270,10 @@ Highlighted campaigns included:
 
 This allowed leadership to quickly identify high-performing campaigns and improve future marketing investment decisions.
 
+## Final Presentation Video
+
+https://github.com/user-attachments/assets/f7bf04bd-000e-4e0d-8630-024c514a5b45
+
 ---
 
 ## Business Questions Answered
