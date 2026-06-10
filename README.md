@@ -126,9 +126,7 @@ We designed a star-schema-based enterprise warehouse using Kimball dimensional m
 Measures:
 
 - quantity
-- unit_price
-- discount_amount
-- total_price
+- discount
 - price_after_discount
 
 ---
@@ -331,19 +329,25 @@ These were some of the most valuable parts of the project because they mirrored 
 ```text
 data-5360-dbt/
 │
-├── analyses/
-├── macros/
 ├── models/
 │   └── ecoessentials/
-│       ├── dimensions
-│       ├── facts
-│       ├── staging
-│       └── schema.yml
+│       ├── eco_dim_campaign.sql
+│       ├── eco_dim_customer.sql        # conformed customer (transactional + marketing)
+│       ├── eco_dim_date.sql
+│       ├── eco_dim_email.sql
+│       ├── eco_dim_eventtype.sql
+│       ├── eco_dim_product.sql
+│       ├── eco_dim_time.sql
+│       ├── eco_fact_sale.sql           # grain: one row per order line
+│       ├── eco_fact_emailevent.sql     # factless fact: email send/open/click events
+│       ├── eco_sources.yml             # source definitions (Snowflake landing)
+│       └── schema.yml                  # model descriptions + data quality tests
 │
-├── seeds/
-├── snapshots/
-├── tests/
+├── macros/
+│   └── generate_schema_name.sql        # routes models to custom DW schema
+├── images/                             # dashboard screenshots
+├── analyses/  ·  seeds/  ·  snapshots/  ·  tests/
 │
 ├── dbt_project.yml
-├── packages.yml
+├── packages.yml                        # dbt_utils, dbt_date
 └── README.md
